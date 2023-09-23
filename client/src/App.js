@@ -1,19 +1,19 @@
-
-import "antd/dist/reset.css";
-import "./resources/global.css";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import 'antd/dist/reset.css';
+import './resources/global.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Register from './pages/Register';
-import Home from './pages/Home';
 import Login from './pages/Login';
+import Home from './pages/Home';
+
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path='/Home' element={<Home />} />
-          <Route path='/Register' element={<Register />} />
-          <Route path='/Login' element={<Login />} />
+          <Route path="/home" element={<Home/>} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>
