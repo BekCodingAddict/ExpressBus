@@ -1,12 +1,26 @@
 import React from 'react';
 import { Form } from 'antd';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
+import {message} from 'antd';
 
 function Login() {
+    const navigate=useNavigate();
+    const onFinish = async(values) => {
+        try {
+            const response=await axios.post("/api/users/login",values);
+            if(response.data.success){
+                message.success(response.data.message);
+                localStorage.setItem("token",response.data.data);
+                navigate('/Home');
+            }else{
+                message.error(response.data.message);
+            }
+        } catch (error) {
+            message.error(error.message);
+        }
+    };
 
-    const onFinish = (values) => {
-        console.log(values);
-    }
     return (
         <div className='h-screen d-flex justify-content-center align-items-center'>
             <div className='w-400 card p-3'>
