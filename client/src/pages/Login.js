@@ -3,6 +3,7 @@ import { Form } from 'antd';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import {message} from 'antd';
+import { Button } from 'antd/es/radio';
 
 function Login() {
     const navigate=useNavigate();
@@ -12,7 +13,7 @@ function Login() {
             if(response.data.success){
                 message.success(response.data.message);
                 localStorage.setItem("token",response.data.data);
-                navigate('/home');
+                navigate('/');
             }else{
                 message.error(response.data.message);
             }
