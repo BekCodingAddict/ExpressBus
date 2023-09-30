@@ -1,0 +1,28 @@
+.layout-parent{
+    display:flex;
+    height: 100%;
+    width: 100%;
+    padding: 15px;
+    height: 100vh;
+    gap: 15px;
+}
+
+.body{
+    width: 100%;
+}
+
+.header{
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.500);
+    width: 100%;
+    padding: 20px;
+}
+
+.sidebar{
+    width: 300px;
+    background-color: var(--primary);
+    border-radius: 5px;
+}
+
+.content{
+    padding: 10px;
+}
