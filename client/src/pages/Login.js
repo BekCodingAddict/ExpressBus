@@ -2,22 +2,28 @@ import React from 'react';
 import { Form } from 'antd';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-import {message} from 'antd';
+import { message } from 'antd';
 import { Button } from 'antd/es/radio';
+import { useDispatch } from 'react-redux';
+import { HideLoading, ShowLoading } from '../redux/alertsSlice';
 
 function Login() {
-    const navigate=useNavigate();
-    const onFinish = async(values) => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const onFinish = async (values) => {
         try {
-            const response=await axios.post("/api/users/login",values);
-            if(response.data.success){
+            dispatch(ShowLoading());
+            const response = await axios.post("/api/users/login", values);
+            dispatch(HideLoading());
+            if (response.data.success) {
                 message.success(response.data.message);
-                localStorage.setItem("token",response.data.data);
+                localStorage.setItem("token", response.data.data);
                 navigate('/');
-            }else{
+            } else {
                 message.error(response.data.message);
             }
         } catch (error) {
+            dispatch(HideLoading());
             message.error(error.message);
         }
     };

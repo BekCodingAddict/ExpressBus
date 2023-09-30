@@ -1,34 +1,36 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {message} from 'antd';
-import {useDispatch } from 'react-redux';
+import { message } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 import { SetUser } from '../redux/usersSlice';
+import { HideLoading, ShowLoading } from '../redux/alertsSlice';
 
-function ProtectedRoute({children}) {
-    const dispatch=useDispatch();
-    const [loading, setLoading] = useState(true);
+function ProtectedRoute({ children }) {
+    const dispatch = useDispatch();
+    const { loading } = useSelector((state) => state.alerts);
     const navigate = useNavigate();
-    const validateToken = async() => {
+    const validateToken = async () => {
         try {
+            dispatch(ShowLoading());
             const response = await axios.post('/api/users/get-user-by-id', {}, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 }
             })
-            if(response.data.success){
-                setLoading(false);
+            dispatch(HideLoading());
+            if (response.data.success) {
                 dispatch(SetUser(response.data.data));
-            }else{
-                setLoading(false);
+            } else {
+                dispatch(HideLoading());
                 localStorage.removeItem('token');
                 message.error(response.data.message);
                 navigate("/login");
             }
         } catch (error) {
+            dispatch(HideLoading());
             localStorage.removeItem('token');
             message.error(error.message);
-            setLoading(false);
             navigate('/login');
         }
     };
@@ -39,8 +41,8 @@ function ProtectedRoute({children}) {
             navigate("/login");
         }
     }, []);
-    return  <div>{loading? <div>Loading...</div>:<>{children}</>}</div>
-    
+    return <div>{loading ? <div>Loading...</div> : <>{children}</>}</div>
+
 }
 
 export default ProtectedRoute;

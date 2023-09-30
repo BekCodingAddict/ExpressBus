@@ -1,16 +1,16 @@
 /* Height and width */
 
-.h-screen{
-    height:100vh;
+.h-screen {
+    height: 100vh;
 }
 
-.w-400{
+.w-400 {
     width: 400px;
 }
 
 /* imput */
 
-input{
+input {
     height: 40px;
     border: 2px solid gray;
     width: 100%;
@@ -18,44 +18,67 @@ input{
 }
 
 /* card */
-.card{
+.card {
     border: 2px solid gray;
     box-shadow: 0 0 2px gray;
 }
 
 /* text-sizes */
-.text-xl{
+.text-xl {
     font-size: 30px;
 }
-.text-xl{
+
+.text-xl {
     font-size: 25px;
 }
-.text-lg{
+
+.text-lg {
     font-size: 20px;
 }
-.text-md{
+
+.text-md {
     font-size: 18px;
 }
 
 /* buttons */
-.primary-btn{
+.primary-btn {
     background-color: var(--primary);
     color: white;
     border: none;
     padding: 10px 20px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.secondary-btn{
+.secondary-btn {
     background-color: var(--secondary);
     color: white;
-    border:none;
+    border: none;
     padding: 10px 20px;
     cursor: pointer;
 }
 
 /* anchor */
-a{
+a {
     text-decoration: none !important;
     color: var(--primary) !important;
+}
+
+/* Spinner /Loader */
+.spinner-parent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.507);
+    z-index: 10000;
+}
+
+.spinner-border {
+    color: white !important;
+    height: 80px !important;
+    width: 80px !important;
 }
