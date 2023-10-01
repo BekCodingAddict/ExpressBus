@@ -18,15 +18,36 @@
 }
 
 .sidebar {
-    width: 300px;
     background-color: var(--primary);
     border-radius: 5px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: start;
+    padding: 0 15px;
+    flex-direction: column;
+
 }
 
-.menu-item{
+.logo-menu{
+    display: flex;
+    justify-content:end;
+    align-items:end;
+    color:white;
+    margin-bottom: 15px;
+}
+
+.logo {
+    color: white;
+}
+
+.role {
+    color: white;
+    font-size: 16px;
+}
+
+.menu{
+    margin-top: 100px;
+}
+.menu-item {
     display: flex;
     align-items: center;
     justify-content: start;
@@ -34,13 +55,14 @@
     width: 100%;
     cursor: pointer;
     transition: 0.2s;
-    gap:15px
+    gap: 15px
 }
 
-.active-menu-item{
+.active-menu-item {
     border: 2px solid white;
     border-radius: 5px;
 }
+
 .menu-item i {
     font-size: 20px;
     margin-right: 10px;
