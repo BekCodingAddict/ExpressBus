@@ -1,42 +1,55 @@
 import React from "react";
 import '../resources/layout.css';
-function DefaultLayout({ children }) {
+import { useNavigate } from 'react-router-dom';
 
-    const userMenu=[]
-    const adminMenu=[
+function DefaultLayout({ children }) {
+    const navigate = useNavigate();
+
+    const userMenu = []
+    const adminMenu = [
         {
-            name:"Home",
+            name: "Home",
             path: '/admin',
-            icon:'ri-home-line',
+            icon: 'ri-home-line',
         },
         {
-            name:'Buses',
-            path:'/admin/buses',
-            icon:'ri-bus-fill',
+            name: 'Buses',
+            path: '/admin/buses',
+            icon: 'ri-bus-fill',
         },
         {
-            name:'Users',
-            path:'/admin/users',
-            icon:'ri-user-line',
+            name: 'Users',
+            path: '/admin/users',
+            icon: 'ri-user-line',
         },
         {
-            name:'Bookings',
-            path:'/admin/bookings',
-            icon:'ri-file-list-line',
+            name: 'Bookings',
+            path: '/admin/bookings',
+            icon: 'ri-file-list-line',
         },
         {
-            name:'Logout',
-            path:'/logout',
-            icon:'ri-logout-box-line',
+            name: 'Logout',
+            path: '/logout',
+            icon: 'ri-logout-box-line',
         }
     ]
-    const menuToBeRender=adminMenu
+    const menuToBeRender = adminMenu;
+    const activeRoute = window.location.pathname;
     return (
         <div className="layout-parent" >
             <div className="sidebar">
-                {menuToBeRender.map((iten,index)=>{
-                    return <div></div>;
-                })}
+                <div className="d-flex flex-column gap-3 justify-coontent-start">
+                    {menuToBeRender.map((item, index) => {
+                        return (
+                            <div className={`${activeRoute === item.path && "active-menu-item"} menu-item`}>
+                                <i className={item.icon}></i>
+                                <span onClick={() => {
+                                    navigate(item.path);
+                                }}>{item.name}</span>
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
             <div className="body">
                 <div className="header">
@@ -46,7 +59,6 @@ function DefaultLayout({ children }) {
                     {children}
                 </div>
             </div>
-
         </div>
     )
 }
