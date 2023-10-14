@@ -11,6 +11,7 @@ function AdminBuses() {
     const dispatch = useDispatch();
     const [showBusForm, setShowBusForm] = React.useState(false);
     const [buses, setBuses] = useState([]);
+    const [selectedBus,setSelectedBus]=useState(null);
 
     const getBuses = async () => {
         try {
@@ -48,7 +49,7 @@ function AdminBuses() {
         {
             title: 'Juorney Date',
             dataIndex: 'journeyDate',
-            render: (journeyDate) => moment(journeyDate).format('YYYY-MM-DD')
+            // render: (journeyDate) => moment(journeyDate).format('YYYY-MM-DD')
         },
         {
             title: 'Status',
@@ -59,7 +60,10 @@ function AdminBuses() {
             dataIndex: 'action',
             render: (action, record) => (
                 <div className='d-flex gap-3'>
-                    <i class="ri-pencil-line"></i>
+                    <i class="ri-pencil-line" onClick={()=>{
+                        setSelectedBus(record);
+                        setShowBusForm(true);
+                    }}></i>
                     <i class="ri-delete-bin-line"></i>
                 </div>
             )
@@ -80,7 +84,8 @@ function AdminBuses() {
             <Table columns={colums} dataSource={buses} />
 
             {showBusForm && <BusForm showBusForm={showBusForm}
-                setShowBusForm={setShowBusForm} type='add' />}
+                setShowBusForm={setShowBusForm} type={selectedBus? "edit":"add"}
+                 selectedBus={selectedBus} getData={getBuses} setSelectedBus={setSelectedBus}/>}
         </div>
     )
 }
