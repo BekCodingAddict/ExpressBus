@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux';
 import {ShowLoading,HideLoading} from '../redux/alertsSlice';
 import moment from 'moment';
 
-function BusForm({showBusForm,setShowBusForm,type='add' }) {
+function BusForm({showBusForm,setShowBusForm,type='add',getData,selectedBus,setSelectedBus}) {
     const dispatch=useDispatch();
 
     const onFinish=async(values)=>{
@@ -13,17 +13,20 @@ function BusForm({showBusForm,setShowBusForm,type='add' }) {
             dispatch(ShowLoading());
             let response=null;
             if(type==='add'){
-                response=await axiosInstance.post('/api/buses/add-bus',{
-                    ...values,
-                    journeyDate:moment(values.journeyDate).format("YYYY-MM-DD")
-                })
+                response=await axiosInstance.post('/api/buses/add-bus',values);
             }else{
-
+                response=await axiosInstance.post('/api/buses/update-bus',{
+                    ...values,
+                    _id:selectedBus._id,
+                });
             }if(response.data.success){
                 message.success(response.data.message);
             }else{
                 message.error(response.data.message);
             }
+            getData();
+            setShowBusForm(false);
+            setSelectedBus(null);
             dispatch(HideLoading());
         } catch (error) {
             message.error(error.message);
@@ -31,8 +34,12 @@ function BusForm({showBusForm,setShowBusForm,type='add' }) {
         }
     }
     return (
-        <Modal width={800} title='Add Bus' visible={showBusForm} onCancel={() => setShowBusForm(false)} footer={false}>
-            <Form layout="vertical" onFinish={onFinish}>
+        <Modal width={800} title={type==="add"? "Add Bus":"Update Bus"} visible={showBusForm} 
+        onCancel={() =>{
+            setSelectedBus(null);
+            setShowBusForm(false);
+        }} footer={false}>
+            <Form layout="vertical" onFinish={onFinish} initialValues={selectedBus}>
                 <Row gutter={[10, 10]}>
                     <Col lg={24} xs={24}>
                         <Form.Item label="Bus Name" name='name'>
@@ -61,7 +68,7 @@ function BusForm({showBusForm,setShowBusForm,type='add' }) {
                     </Col>
 
                     <Col lg={8} xs={24}>
-                        <Form.Item label='Jurney Date' name='jurneyDate'>
+                        <Form.Item label='Jurney Date' name='journeyDate'>
                             <input type="date" />
                         </Form.Item>
                     </Col>
