@@ -26,8 +26,13 @@ input {
 /* Bus-cards */
 .bus-card{
     border-radius: 0 !important;
-    border: 2px double gray;
+    border: 1px double gray;
     box-shadow: 0 0 2px gray;
+}
+.bus-card:hover{
+    transform: scale(1.005);
+    background-color: var(--primary);
+    color: white;
 }
 
 /* text-sizes */
@@ -45,6 +50,14 @@ input {
 
 .text-md {
     font-size: 18px;
+}
+.underline{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.underline:active{
+    color: red;
 }
 
 /* buttons */
