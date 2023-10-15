@@ -23,6 +23,13 @@ input {
     box-shadow: 0 0 2px gray;
 }
 
+/* Bus-cards */
+.bus-card{
+    border-radius: 0 !important;
+    border: 2px double gray;
+    box-shadow: 0 0 2px gray;
+}
+
 /* text-sizes */
 .text-xl {
     font-size: 30px;
@@ -68,7 +75,7 @@ i{
     font-size: 25px;
 }
 
-h1{
+h1,p{
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
 }
