@@ -5,8 +5,10 @@ import { useDispatch } from "react-redux";
 import { message, Col, Row } from "antd";
 import { HideLoading, ShowLoading } from "../redux/alertsSlice";
 import { useParams } from "react-router-dom";
+import SeatSelection from "../component/SeatSelection";
 
 function BookNow() {
+  const [selectedSeats, setSelectedSeats] = useState([]);
   const perams = useParams();
   const dispatch = useDispatch();
   const [bus, setBus] = useState(null);
@@ -36,20 +38,45 @@ function BookNow() {
   return (
     <div>
       {bus && (
-        <Row className="mt-3">
+        <Row className="mt-3" gutter={300}>
           <Col lg={12} xs={24} sm={24}>
             <h1 className="text-xl text-secondary">{bus.name}</h1>
-            <h1 className="text-md">{bus.from} - {bus.to} </h1>
+            <h1 className="text-md">
+              {bus.from} - {bus.to}{" "}
+            </h1>
             <hr />
-            
-            <div>
-                <h1 className="text-lg"><b>Journey Date :</b> {bus.journeyDate}</h1>
-                <h1 className="text-lg"><b>Price :</b> ${bus.fare} /-</h1>
-                <h1 className="text-lg"><b>Departure Time :</b> {bus.departure}</h1>
-                <h1 className="text-lg"><b>Arrival Time :</b> {bus.arrival}</h1>
+
+            <div className="flex flex-col gap-1">
+              <h1 className="text-lg">
+                <b>Journey Date :</b> {bus.journeyDate}
+              </h1>
+              <h1 className="text-lg">
+                <b>Price :</b> ${bus.fare} /-
+              </h1>
+              <h1 className="text-lg">
+                <b>Departure Time :</b> {bus.departure}
+              </h1>
+              <h1 className="text-lg">
+                <b>Arrival Time :</b> {bus.arrival}
+              </h1>
+            </div>
+            <hr />
+
+            <div className="flex flex-col gap-2">
+              <h1 className="text-2xl">
+                Selected Seats : {selectedSeats.join(", ")}
+              </h1>
+              <h1 className="text-2xl mt-2">Price : $ {bus.fare*selectedSeats.length}/-</h1>
+              <button className="secondary-btn mt-3">Book Now</button>
             </div>
           </Col>
-          <Col lg={12} xs={24} sm={24}></Col>
+          <Col lg={12} xs={24} sm={24}>
+            <SeatSelection
+              selectedSeats={selectedSeats}
+              setSelectedSeats={setSelectedSeats}
+              bus={bus}
+            />
+          </Col>
         </Row>
       )}
     </div>
