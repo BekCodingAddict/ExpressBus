@@ -41,7 +41,7 @@ const busSchema=new mongoose.Schema({
         type:Number,
         require:true
     },
-    seatBooked:{
+    seatsBooked:{
         type:Array,
         default:[]
     },
