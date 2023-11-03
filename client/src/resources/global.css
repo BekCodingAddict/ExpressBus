@@ -77,6 +77,15 @@ input {
     cursor: pointer;
 }
 
+
+.disabled-btn {
+    background-color: gray !important;
+    color: white;
+    border: none !important;
+    padding: 10px 20px;
+    cursor: not-allowed;
+}
+
 /* anchor */
 a {
     text-decoration: none !important;

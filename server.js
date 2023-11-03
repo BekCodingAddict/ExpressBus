@@ -7,7 +7,9 @@ const port = process.env.port || 5000;
 app.use(express.json());
 const usersRoute=require('./routes/usersRoute');
 const busesRoute=require('./routes/busesRoute');
+const bookingRoute=require('./routes/bookingRoute');
 
 app.use('/api/users',usersRoute);
 app.use('/api/buses',busesRoute);
+app.use('/api/bookings',bookingRoute);
 app.listen(port, () => console.log('NodeJs server listening on port ' + port + '!;'));
