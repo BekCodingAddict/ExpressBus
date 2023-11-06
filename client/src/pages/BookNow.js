@@ -6,6 +6,7 @@ import { message, Col, Row } from "antd";
 import { HideLoading, ShowLoading } from "../redux/alertsSlice";
 import { useParams } from "react-router-dom";
 import SeatSelection from "../component/SeatSelection";
+import StripeCheckout from 'react-stripe-checkout';
 
 function BookNow() {
   const [selectedSeats, setSelectedSeats] = useState([]);
@@ -30,18 +31,18 @@ function BookNow() {
       message.error(error.message);
     }
   };
-  
-const bookNow =async()=>{
+
+  const bookNow = async () => {
     try {
       dispatch(ShowLoading());
-      const response=await axiosInstance.post('/api/bookings/book-seat',{
-        bus:bus._id,
-        seats:selectedSeats,
+      const response = await axiosInstance.post('/api/bookings/book-seat', {
+        bus: bus._id,
+        seats: selectedSeats,
       });
       dispatch(HideLoading());
-      if(response.data.success){
+      if (response.data.success) {
         message.success(response.data.message);
-      }else{
+      } else {
         message.error(response.data.message);
       }
     } catch (error) {
@@ -50,6 +51,10 @@ const bookNow =async()=>{
     }
   }
 
+  const onToken=(token)=>{
+    console.log(token);
+  }
+  
   useEffect(() => {
     getBus();
   }, []);
@@ -82,7 +87,7 @@ const bookNow =async()=>{
                 <b>Capacity: </b> {bus.capacity}
               </h1>
               <h1 className="text-lg">
-                <b>Seats Left: </b> {bus.capacity-bus.seatsBooked.length}
+                <b>Seats Left: </b> {bus.capacity - bus.seatsBooked.length}
               </h1>
             </div>
             <hr />
@@ -91,11 +96,14 @@ const bookNow =async()=>{
               <h1 className="text-2xl">
                 Selected Seats : {selectedSeats.join(", ")}
               </h1>
-              <h1 className="text-2xl mt-2">Price : $ {bus.fare*selectedSeats.length}/-</h1>
-              <button className={`btn btn-primary ${
-                    selectedSeats.length === 0 && "disabled-btn"
-                  }`} onClick={bookNow} 
-                  disabled={selectedSeats.length===0}>Book Now</button>
+              <h1 className="text-2xl mt-2">Price : $ {bus.fare * selectedSeats.length}/-</h1>
+
+              <StripeCheckout token={onToken} stripeKey="pk_test_51O8oCuJarGJPlbJL16hHCJL7LqvRtktKRx3Ws1mYFpCJs2fPhy3w5RIxLOEz5Jxvrl671PF7WoVVoE3bAUQzbES300s7OdryB2">
+                <button className={`btn btn-primary ${selectedSeats.length === 0 && "disabled-btn"
+                  }`} 
+                  disabled={selectedSeats.length === 0}>Book Now</button>
+              </StripeCheckout>
+
             </div>
           </Col>
           <Col lg={12} xs={24} sm={24}>
