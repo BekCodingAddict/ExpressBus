@@ -32,12 +32,13 @@ function BookNow() {
     }
   };
 
-  const bookNow = async () => {
+  const bookNow = async (transactionId) => {
     try {
       dispatch(ShowLoading());
       const response = await axiosInstance.post('/api/bookings/book-seat', {
         bus: bus._id,
         seats: selectedSeats,
+        transactionId
       });
       dispatch(HideLoading());
       if (response.data.success) {
@@ -51,10 +52,27 @@ function BookNow() {
     }
   }
 
-  const onToken=(token)=>{
-    console.log(token);
+  const onToken = async (token) => {
+    try {
+      dispatch(ShowLoading());
+      const response = await axiosInstance.post('/api/bookings/make-payment', {
+        token,
+        amount: selectedSeats.length * bus.fare*100,
+      });
+      dispatch(HideLoading());
+
+      if (response.data.success) {
+        message.success(response.data.message);
+        bookNow(response.data.data.transactionId);
+      } else {
+        message.error(response.data.message);
+      }
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
   }
-  
+
   useEffect(() => {
     getBus();
   }, []);
@@ -98,9 +116,14 @@ function BookNow() {
               </h1>
               <h1 className="text-2xl mt-2">Price : $ {bus.fare * selectedSeats.length}/-</h1>
 
-              <StripeCheckout token={onToken} stripeKey="pk_test_51O8oCuJarGJPlbJL16hHCJL7LqvRtktKRx3Ws1mYFpCJs2fPhy3w5RIxLOEz5Jxvrl671PF7WoVVoE3bAUQzbES300s7OdryB2">
+              <StripeCheckout 
+              billingAddress
+              token={onToken}
+              amount={bus.fare*selectedSeats.length*100}
+              currency="USD"
+               stripeKey="pk_test_51O8oCuJarGJPlbJL16hHCJL7LqvRtktKRx3Ws1mYFpCJs2fPhy3w5RIxLOEz5Jxvrl671PF7WoVVoE3bAUQzbES300s7OdryB2">
                 <button className={`btn btn-primary ${selectedSeats.length === 0 && "disabled-btn"
-                  }`} 
+                  }`}
                   disabled={selectedSeats.length === 0}>Book Now</button>
               </StripeCheckout>
 
