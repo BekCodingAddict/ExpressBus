@@ -55,7 +55,10 @@ function DefaultLayout({ children }) {
         }
     ]
     const menuToBeRender = user?.isAdmin ? adminMenu : userMenu;
-    const activeRoute = window.location.pathname;
+    let activeRoute = window.location.pathname;
+    if (window.location.pathname.includes('book-now')){
+        activeRoute='/';
+    }
     return (
         <div className="layout-parent" >
             <div className="sidebar">
