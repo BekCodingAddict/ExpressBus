@@ -89,7 +89,7 @@ function Bookings() {
             <div className='mt-2'>
                 <Table dataSource={bookings} columns={columns} />
             </div>
-            {showPrintModal && <Modal title='Print Ticket'
+            {showPrintModal && <Modal title='Print Ticket' width={1020}
                 onCancel={
                     () => {
                         setShowPrintModal(false);
@@ -99,7 +99,7 @@ function Bookings() {
                 okText="Print"
                 onOk={handlePrint}
             >
-                <div className='d-flex flex-column p-5' ref={componentRef}>
+                {/* <div className='ticket' ref={componentRef}>
                     <p>Bus: {selectedBooking.name}</p>
                     <p>{selectedBooking.from} - {selectedBooking.to}</p><hr />
                     <p>
@@ -118,6 +118,40 @@ function Bookings() {
                         <span>Total Amount:  $</span>{" "}
                         {selectedBooking.fare * selectedBooking.seats.length} /-
                     </p>
+                </div> */}
+                <div className='ticket'>
+                    <div className='left-side'>
+                        <h1>BUS<br />TICKET</h1>
+                        <p>BUS Name: </p><hr />
+                        <p>Bus Number:</p>
+                        <p>Departure Time: </p>
+                        <p>Arrival Time: </p>
+                        <p>Seat Number: </p>
+                        <p>From: </p>
+                        <p>To:</p>
+                    </div>
+                    <div className='right-side'>
+                        <h1>BUS TICKET</h1>
+                        <p>The Terminal Company: </p>
+                        <table >
+                            <tr>
+                                <td>From: </td>
+                                <td>To: </td>
+                            </tr>
+                            <tr>
+                                <td>Departure Time: </td>
+                                <td>Arrival Time:</td>
+                            </tr>
+                            <tr>
+                                <td>Price :</td>
+                                <td>$ /-</td>
+                            </tr>
+                        </table>
+
+
+
+                    </div>
+
                 </div>
                 <div className="d-flex">
 
