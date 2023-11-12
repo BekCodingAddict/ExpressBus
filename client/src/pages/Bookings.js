@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PageTitle from '../component/PageTitle';
 import BusForm from '../component/BusForm';
 import { useDispatch } from 'react-redux';
@@ -6,6 +6,7 @@ import { HideLoading, ShowLoading } from '../redux/alertsSlice';
 import { Modal, Table, message } from 'antd';
 import { axiosInstance } from '../helpers/axiosInstance';
 import moment from 'moment';
+import { useReactToPrint } from 'react-to-print';
 
 function Bookings() {
     const [showPrintModal, setShowPrintModal] = useState(false);
@@ -77,10 +78,17 @@ function Bookings() {
         getBookings();
     }, []);
 
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+    });
+
     return (
         <div>
             <PageTitle title="Bookings" />
-            <Table dataSource={bookings} columns={columns} />
+            <div className='mt-2'>
+                <Table dataSource={bookings} columns={columns} />
+            </div>
             {showPrintModal && <Modal title='Print Ticket'
                 onCancel={
                     () => {
@@ -88,8 +96,10 @@ function Bookings() {
                         setSelectedBooking(null);
                     }}
                 visible={showPrintModal}
+                okText="Print"
+                onOk={handlePrint}
             >
-                <div className='d-flex flex-column'>
+                <div className='d-flex flex-column p-5' ref={componentRef}>
                     <p>Bus: {selectedBooking.name}</p>
                     <p>{selectedBooking.from} - {selectedBooking.to}</p><hr />
                     <p>
@@ -108,6 +118,9 @@ function Bookings() {
                         <span>Total Amount:  $</span>{" "}
                         {selectedBooking.fare * selectedBooking.seats.length} /-
                     </p>
+                </div>
+                <div className="d-flex">
+
                 </div>
             </Modal>}
         </div>
