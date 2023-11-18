@@ -4,13 +4,14 @@ import { axiosInstance } from "../helpers/axiosInstance";
 import { useDispatch } from "react-redux";
 import { message, Col, Row } from "antd";
 import { HideLoading, ShowLoading } from "../redux/alertsSlice";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SeatSelection from "../component/SeatSelection";
 import StripeCheckout from 'react-stripe-checkout';
 
 function BookNow() {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const perams = useParams();
+  const navigate=useNavigate();
   const dispatch = useDispatch();
   const [bus, setBus] = useState(null);
 
@@ -43,6 +44,7 @@ function BookNow() {
       dispatch(HideLoading());
       if (response.data.success) {
         message.success(response.data.message);
+        navigate("/bookings");
       } else {
         message.error(response.data.message);
       }

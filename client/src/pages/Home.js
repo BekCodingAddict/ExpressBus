@@ -38,7 +38,7 @@ function Home(){
             </div>
             <div>
                 <Row>
-                    {buses.map(bus=>(
+                    {buses.filter((bus)=>bus.status==="Yet To Start").map((bus)=>(
                         <Col lg={12} xs={24} sm={24}>
                         <Bus bus={bus}/>
                         </Col>

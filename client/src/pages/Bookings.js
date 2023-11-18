@@ -57,6 +57,9 @@ function Bookings() {
         }, {
             title: "Seats",
             dataIndex: 'seats',
+            render: (seats)=>{
+                return seats.join(", ");
+            }
         }, {
             title: "Action",
             dataIndex: 'action',
@@ -99,27 +102,31 @@ function Bookings() {
                 okText="Print"
                 onOk={handlePrint}
             >
-                {/* <div className='ticket' ref={componentRef}>
-                    <p>Bus: {selectedBooking.name}</p>
-                    <p>{selectedBooking.from} - {selectedBooking.to}</p><hr />
-                    <p>
-                        <span >Journey Date: </span>{" "}
-                        {moment(selectedBooking.journeyDate).format("DD-MM-YYYY")}
-                    </p>
-                    <p>
-                        <span>Journey Time: </span>{" "}
-                        {selectedBooking.departure}
-                    </p><hr />
-                    <p>
-                        <span>Seats Numbers: </span>{" "}<br />
-                        {selectedBooking.seats}
-                    </p><hr />
-                    <p>
-                        <span>Total Amount:  $</span>{" "}
-                        {selectedBooking.fare * selectedBooking.seats.length} /-
-                    </p>
-                </div> */}
-                <div className='ticket'>
+         <div className="d-flex flex-column p-5" ref={componentRef}>
+            <p>Bus : {selectedBooking.name}</p>
+            <p>
+              {selectedBooking.from} - {selectedBooking.to}
+            </p>
+            <hr />
+            <p>
+              <span>Journey Date:</span>{" "}
+              {moment(selectedBooking.journeyDate).format("DD-MM-YYYY")}
+            </p>
+            <p>
+              <span>Journey Time:</span> {selectedBooking.departure}
+            </p>
+            <hr />
+            <p>
+              <span>Seat Numbers:</span> <br />
+              {selectedBooking.seats}
+            </p>
+            <hr />
+            <p>
+              <span>Total Amount:</span>{" "}
+              {selectedBooking.fare * selectedBooking.seats.length} /-
+            </p>
+          </div>
+                {/* <div className='ticket'>
                     <div className='left-side'>
                         <h1>BUS<br />TICKET</h1>
                         <p>BUS Name: </p><hr />
@@ -147,12 +154,8 @@ function Bookings() {
                                 <td>$ /-</td>
                             </tr>
                         </table>
-
-
-
                     </div>
-
-                </div>
+                </div> */}
                 <div className="d-flex">
 
                 </div>

@@ -1,27 +1,27 @@
 import React from "react";
 import { Modal, Col, Row, Form, message } from 'antd';
 import { axiosInstance } from "../helpers/axiosInstance";
-import {useDispatch} from 'react-redux';
-import {ShowLoading,HideLoading} from '../redux/alertsSlice';
+import { useDispatch } from 'react-redux';
+import { ShowLoading, HideLoading } from '../redux/alertsSlice';
 import moment from 'moment';
 
-function BusForm({showBusForm,setShowBusForm,type='add',getData,selectedBus,setSelectedBus}) {
-    const dispatch=useDispatch();
+function BusForm({ showBusForm, setShowBusForm, type = 'add', getData, selectedBus, setSelectedBus }) {
+    const dispatch = useDispatch();
 
-    const onFinish=async(values)=>{
+    const onFinish = async (values) => {
         try {
             dispatch(ShowLoading());
-            let response=null;
-            if(type==='add'){
-                response=await axiosInstance.post('/api/buses/add-bus',values);
-            }else{
-                response=await axiosInstance.post('/api/buses/update-bus',{
+            let response = null;
+            if (type === 'add') {
+                response = await axiosInstance.post('/api/buses/add-bus', values);
+            } else {
+                response = await axiosInstance.post('/api/buses/update-bus', {
                     ...values,
-                    _id:selectedBus._id,
+                    _id: selectedBus._id,
                 });
-            }if(response.data.success){
+            } if (response.data.success) {
                 message.success(response.data.message);
-            }else{
+            } else {
                 message.error(response.data.message);
             }
             getData();
@@ -34,11 +34,11 @@ function BusForm({showBusForm,setShowBusForm,type='add',getData,selectedBus,setS
         }
     }
     return (
-        <Modal width={800} title={type==="add"? "Add Bus":"Update Bus"} visible={showBusForm} 
-        onCancel={() =>{
-            setSelectedBus(null);
-            setShowBusForm(false);
-        }} footer={false}>
+        <Modal width={800} title={type === "add" ? "Add Bus" : "Update Bus"} visible={showBusForm}
+            onCancel={() => {
+                setSelectedBus(null);
+                setShowBusForm(false);
+            }} footer={false}>
             <Form layout="vertical" onFinish={onFinish} initialValues={selectedBus}>
                 <Row gutter={[10, 10]}>
                     <Col lg={24} xs={24}>
@@ -85,12 +85,25 @@ function BusForm({showBusForm,setShowBusForm,type='add',getData,selectedBus,setS
 
                     <Col lg={12} xs={24}>
                         <Form.Item label="Type" name='type'>
-                            <input type="text" />
+                            <select name="" id="">
+                                <option value="General">General</option>
+                                <option value="Premium">Premium</option>
+                            </select>
                         </Form.Item>
                     </Col>
                     <Col lg={12} xs={24}>
                         <Form.Item label='Fare' name='fare'>
                             <input type="text" />
+                        </Form.Item>
+                    </Col>
+
+                    <Col lg={12} xs={24}>
+                        <Form.Item label="Status" name="status">
+                            <select name="" id="">
+                                <option value="Yet To Start">Yet To Start</option>
+                                <option value="Running">Running</option>
+                                <option value="Completed">Completed</option>
+                            </select>
                         </Form.Item>
                     </Col>
                 </Row>

@@ -30,7 +30,7 @@ function DefaultLayout({ children }) {
     const adminMenu = [
         {
             name: "Home",
-            path: '/admin',
+            path: '/',
             icon: 'ri-home-line',
         },
         {
