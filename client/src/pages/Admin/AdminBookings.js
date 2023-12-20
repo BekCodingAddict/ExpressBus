@@ -3,10 +3,10 @@ import axios from "axios";
 import moment from "moment";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import BusForm from "../components/BusForm";
-import PageTitle from "../components/PageTitle";
-import { axiosInstance } from "../helpers/axiosInstance";
-import { HideLoading, ShowLoading } from "../redux/alertsSlice";
+import BusForm from "../../components/BusForm";
+import PageTitle from "../../components/PageTitle";
+import { axiosInstance } from "../../helpers/axiosInstance";
+import { HideLoading, ShowLoading } from "../../redux/alertsSlice";
 import { useReactToPrint } from "react-to-print";
 
 function Bookings() {
@@ -18,7 +18,7 @@ function Bookings() {
     try {
       dispatch(ShowLoading());
       const response = await axiosInstance.post(
-        "/api/bookings/get-bookings-by-user-id",
+        "/api/bookings/get-all-bookings",
         {}
       );
       dispatch(HideLoading());

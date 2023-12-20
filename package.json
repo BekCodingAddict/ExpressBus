@@ -1,25 +1,33 @@
 {
-  "name": "expressbus",
+  "name": "sheybus",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "15.7.0",
+    "npm": "7.4.3"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "client-install": "npm install --prefix client",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "node server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "watch": "nodemon server"
   },
-  "author": "Bek Coding Addict",
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "@stripe/stripe-js": "^2.1.11",
+    "@stripe/stripe-js": "^1.35.0",
     "bcryptjs": "^2.4.3",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "http-proxy-middleware": "^2.0.6",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^7.5.2",
-    "nodemailer": "^6.9.5",
-    "nodemon": "^3.0.1",
-    "stripe": "^14.4.0",
-    "uuid": "^9.0.1"
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.4",
+    "nodemailer": "^6.7.8",
+    "nodemon": "^2.0.19",
+    "stripe": "^10.8.0",
+    "uuid": "^9.0.0"
   }
 }
