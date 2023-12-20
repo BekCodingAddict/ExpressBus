@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col } from "antd";
-import "../resources/bus.css";
+import "../resourses/bus.css";
 
 function SeatSelection({ selectedSeats, setSelectedSeats, bus }) {
   const capacity = bus.capacity;
@@ -18,12 +18,13 @@ function SeatSelection({ selectedSeats, setSelectedSeats, bus }) {
       <div className="bus-container">
         <Row gutter={[10, 10]}>
           {Array.from(Array(capacity).keys()).map((seat) => {
-            let seatClass = '';
+            let seatClass = ''
             if(selectedSeats.includes(seat+1))
             {
                 seatClass = 'selected-seat'
-            }else if(bus.seatsBooked.includes(seat+1)){
-              seatClass='booked-seat'
+            }else if (bus.seatsBooked.includes(seat+1))
+            {
+                seatClass = 'booked-seat'
             }
             return (
               <Col span={6}>

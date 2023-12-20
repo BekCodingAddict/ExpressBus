@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
-export const axiosInstance=axios.create({
-    headers:{
-        Authorization:`Bearer ${localStorage.getItem("token")}`,
-    },
+export const axiosInstance = axios.create({
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
 });

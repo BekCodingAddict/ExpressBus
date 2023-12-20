@@ -1,0 +1,93 @@
+.layout-parent {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: 15px;
+  height: 100vh;
+  gap: 20px;
+  overflow-x: hidden !important;
+}
+
+.body {
+  width: 100%;
+}
+.header {
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.479);
+  width: 100%;
+  padding: 20px;
+}
+
+.sidebar {
+  background-color: #20c997;;
+  border-radius: 5px;
+  display: flex;
+  justify-content: start;
+  padding: 0 20px;
+  flex-direction: column;
+}
+.logo {
+  padding-top: 10px;
+  color: white;
+  font-size: 24px;
+}
+.role {
+  color: white;
+  font-size: 14px;
+}
+.role .ri-user-line{
+font-size: 14px;
+}
+.menu{
+    margin-top: 150px;
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 5px 15px;
+  width: 100%;
+  cursor: pointer;
+  transition: 0.2s;
+  gap: 15px;
+}
+.active-menu-item {
+  border: 2px solid white;
+  border-radius: 5px;
+}
+.menu-item i {
+  font-size: 20px;
+  margin-right: 10px;
+  color: white;
+}
+.menu-item span {
+  color: white;
+  font-size: 18px;
+}
+.content {
+  padding: 10px 0px;
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
+  height: 85vh;
+}
+
+.logo-menu{
+  display: flex;
+  justify-content:end;
+  align-items:end;
+  color:white;
+  margin-bottom: 15px;
+}
+
+.logo-menu .logo-menu-title{
+ padding-right: 45px;
+}
+
+.sidebar-header{
+  display: flex;
+  align-items:baseline;
+  justify-content:space-between ;
+}
+
+.display-none{
+  display: none;
+}

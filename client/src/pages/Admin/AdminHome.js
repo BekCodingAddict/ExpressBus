@@ -1,10 +1,9 @@
-import React from "react";
+import React from 'react'
 
-function AdminHome(){
-
-    return (
-        <div>AdminHome</div>
-    )
+function AdminHome() {
+  return (
+    <div>AdminHome</div>
+  )
 }
 
-export default AdminHome;
+export default AdminHome
