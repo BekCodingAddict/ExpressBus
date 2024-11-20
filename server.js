@@ -12,14 +12,23 @@ const bookingsRoute = require("./routes/bookingsRoute");
 app.use("/api/users", usersRoute);
 app.use("/api/buses", busesRoute);
 app.use("/api/bookings", bookingsRoute);
-const path = require("path");
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+//Use the client app
+app.use(express.static(`${__dirname}/client/build`));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client/build/index.html"));
-  });
-}
+//Render client for any path
+app.get("*", (req, res) =>
+  res.sendFile(`${__dirname}/client/build/index.html`)
+);
 
 app.listen(port, () => console.log(`Node server listening on port ${port}!`));
+
+// const path = require("path");
+
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
+
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "client/build/index.html"));
+//   });
+// }
