@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const dbConfig = require("./config/dbConfig");
-const port = process.env.PORT || 6000;
+
 app.use(express.json());
 
 const usersRoute = require("./routes/usersRoute");
@@ -21,7 +21,7 @@ app.get("*", (req, res) =>
   res.sendFile(`${__dirname}/client/build/index.html`)
 );
 
-app.listen(port, () => console.log(`Node server listening on port ${port}!`));
+app.listen(5000, () => console.log(`Node server listening on port ${5000}!`));
 
 // const path = require("path");
 
