@@ -1,6 +1,22 @@
-# Express Bus 
-  - [x]  Online Bus Ticket Booking App
-        
-  - [x]  About App:
-    - A bus ticket booking app is an automated system that enables passengers to purchase bus tickets online. The system also allows them to schedule their route, check seat availability, and even make online payments through secure payment gateways. In case the passengers face any problem, they can straightaway get it addressed within the app itself.
-Bus ticketing apps have made bus journeys super comfortable and convenient. These apps maintain all user details, bus details, reservation details, etc. While booking through these apps, the passengers can easily check the type of bus, its ratings, departure time, bus amenities offered, and much more.
+## MERN Stack Online Bus Ticket Booking 프로젝트를 통해 얻을 수 있는 성과와 배울 수 있는 점은 다음과 같습니다:
+### 1.풀스택 개발 경험
+- <b>프론트엔드:</b>  React와 Redux를 사용하여 사용자 인터페이스를 구축하고, 동적인 웹 애플리케이션을 만들면서 컴포넌트 기반 설계 및 상태 관리에 대한 깊은 이해를 얻을 수 있었습니다.
+- <b>백엔드:</b>  Node.js와 Express.js를 사용하여 RESTful API를 개발하고, 데이터베이스와의 통신 및 서버 사이드 로직을 처리하면서 서버 측 CRUD Application 기술에 대한 이해를 높일 수 있었습니다.
+- <b>데이터베이스:</b>  MongoDB를 사용하여 비정형 데이터를 처리하고, 데이터베이스와 스키마 설계 및 쿼리 최적화 기술을 배울 수 있었습니다.
+
+### 2.사용자 인증 및 권한 관리
+- <b>Authentication (인증):</b> 사용자 로그인 및 회원가입 기능을 구현하면서 JWT (JSON Web Tokens) 인증 시스템을 사용하여 사용자 인증 방식을 구현했습니다. 이를 통해 사용자가 자신임을 증명하고 시스템에 접근할 수 있도록 보장하는 방법을 경험해 봤습니다. 예: 로그인 후 JWT를 사용해 사용자 인증을 처리하고, 클라이언트에서 토큰을 통해 서버에 인증된 요청을 보냄.
+- <b>Authorization (인가):</b> 인증된 사용자에게 권한을 부여하는 과정인 Authorization을 구현하면서 사용자가 어떤 자원에 접근할 수 있는지 결정하는 방법을 배워 봤습니다.예: 관리자만 접근할 수 있는 페이지나 기능을 제한하거나, 예약된 티켓을 사용자만 수정할 수 있도록 하는 권한 부여 시스템 구현.
+- 사용자 로그인 및 회원가입 기능을 구현하면서 JWT (JSON Web Tokens) 기반 인증 및 권한 관리 방법을 배울 수 있습니다. 이를 통해 보안 측면에서 중요한 개념들을 알게 되고 경험을 쌓을 수 있었습니다.
+-  <b>Role-Based Access Control (RBAC):</b> 역할 기반 접근 제어(RBAC)를 구현하여 사용자별로 다르게 적용되는 권한 관리 시스템을 설계할 수 있습니다. 예를 들어, 관리자는 모든 티켓을 보고 수정할 수 있는 권한을 가지고, 일반 사용자는 자신의 예약 내역만 볼 수 있도록 제한할 수 있습니다.
+
+### 3. 결제 시스템 통합
+- Stripe이라는 시스템을 통합하여 온라인 결제 과정과 그에 관련된 보안 및 데이터 처리 방법을 배워 봤습니다. 실제 결제 흐름을 경험하면서 결제 API 통합 및 보안 관리를 익혀 봤습니다.
+
+### API 설계 및 RESTful 아키텍처
+- RESTful API 설계 원칙을 기반으로 서버와 클라이언트 간의 데이터 흐름을 설계하고, HTTP 메소드 (GET, POST, PUT, DELETE 등) 및 상태 코드를 이해하며 API 개발을 실습해 봤습니다.
+
+### 디자인 및 UI/UX
+- Ant Design UI 라이브러리를 사용하여 사용자 친화적인 인터페이스를 구축하면서 UI/UX 디자인에 대한 감각을 키울 수 있었습니다. 프로젝트를 통해 실제 사용자 경험을 고려한 디자인을 구현하고 이를 개선하는 방법을 배웠습니다.
+
+이 프로젝트를 통해 인증과 인가와 관련된 중요한 보안 기술을 실습하고, 웹 애플리케이션의 안전성을 보장하는 방법을 배우게 되었습니다. 이를 통해 실무에서 필요한 보안 인프라와 사용자 관리에 대한 깊은 이해를 쌓을 수 있었습니다.
