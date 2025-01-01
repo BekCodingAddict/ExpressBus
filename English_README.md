@@ -19,3 +19,9 @@ Bus ticketing apps have made bus journeys super comfortable and convenient. Thes
 - Different roles (admin and user) are assigned with specific permissions for managing the system.
 
   
+### As a Developer Personal Thoughts:
+As a developer, I enjoy implementing features that provide a seamless experience for users. For this project, I focused on creating a simple yet powerful application. From setting up state management with Redux to handling payments with Stripe, I strived to ensure that every part of the app functions efficiently and effectively.
+
+The use of Ant Design allows for rapid UI development, while tools like Axios and React Router ensure smooth communication and navigation within the app. I also wanted to make sure that the app is easy to test and maintain, so I’ve included a solid testing setup with Jest and React Testing Library.
+
+I believe that integrating Stripe for easy payments, allowing priority orders, and making the app accessible with clear navigation are some of the key things that can help users get the best out of this application.
