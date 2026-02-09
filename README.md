@@ -109,3 +109,27 @@
 - [ ] 예약 내역 확인 (Booking History)
   - 사용자는 과거 예약 내역을 확인할 수 있습니다.
   - 예약 내역에는 출발 시간, 도착 시간, 좌석 정보, 결제 정보 등이 포함됩니다.
+
+## UI/UX 
+
+Login:
+<img width="1275" height="958" alt="ExpressBus" src="https://github.com/user-attachments/assets/1d3f36d2-eaaf-448f-b514-3312a024de4d" />
+
+Home
+<img width="1279" height="961" alt="ExpressBus-Home" src="https://github.com/user-attachments/assets/e758b002-a982-4609-a78f-1ecb1286e304" />
+
+Buses:
+<img width="1279" height="960" alt="ExpressBus-Buses" src="https://github.com/user-attachments/assets/b6897014-6f89-4293-9cb5-eb3cac0b9622" />
+
+Bookings:
+<img width="1278" height="958" alt="ExpressBus-Booking" src="https://github.com/user-attachments/assets/eb8de77d-5d78-48a4-ac71-052fc1e54d49" />
+
+Payment System:
+<img width="1268" height="959" alt="ExpressBus-Payment" src="https://github.com/user-attachments/assets/319b4a60-9cab-4dd1-8879-81866dbd4c3e" />
+
+Users:
+<img width="1265" height="944" alt="ExpressBus-Users" src="https://github.com/user-attachments/assets/cf277d47-7629-4826-b3e3-da117e52b293" />
+
+
+
+
